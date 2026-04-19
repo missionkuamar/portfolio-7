@@ -1,51 +1,46 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+// components/Hero.jsx
+import React from 'react';
 
-const Hero = () => {
+export default function Hero({ theme }) {
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-secondary to-gray-900 flex items-center pt-16">
-      <div className="container mx-auto px-6 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Hi, I'm <span className="text-primary">Mission Kumar</span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">
-            MERN Stack Developer
-          </h2>
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I create amazing web applications using MongoDB, Express.js, React, and Node.js. 
-            Passionate about building scalable solutions and great user experiences.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a
-              href="#projects"
-              className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-300 shadow-lg"
-            >
-              View My Work
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              Get In Touch
-            </a>
+    <div className={`rounded-2xl overflow-hidden ${theme.gradient} mb-12 shadow-2xl transform transition-all`}>
+      <div className="px-6 py-16 sm:py-20 sm:px-12 text-center relative">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1 mb-6">
+            <i className="fas fa-rocket text-yellow-400"></i>
+            <span className={`text-sm ${theme.text}`}>Launch Your Store Today</span>
           </div>
-
-          <div className="flex justify-center space-x-6">
-            <a href="https://github.com" className="text-gray-400 hover:text-primary text-2xl transition-colors duration-300">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com" className="text-gray-400 hover:text-primary text-2xl transition-colors duration-300">
-              <FaLinkedin />
-            </a>
-            <a href="mailto:mission@example.com" className="text-gray-400 hover:text-primary text-2xl transition-colors duration-300">
-              <FaEnvelope />
-            </a>
+          <h1 className={`text-4xl sm:text-6xl font-bold mb-4 ${theme.text}`}>
+            Build Your{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+              Empire
+            </span>
+          </h1>
+          <p className={`text-lg sm:text-xl mb-8 ${theme.textSecondary} max-w-2xl mx-auto`}>
+            The ultimate e-commerce SaaS platform trusted by 10,000+ businesses worldwide.
+            Start selling smarter, not harder.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button className={`${theme.primary} ${theme.primaryHover} text-white px-8 py-3 rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg`}>
+              Start 14-Day Free Trial
+            </button>
+            <button className={`border-2 ${theme.border} ${theme.text} px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-all`}>
+              Watch Demo <i className="fas fa-play ml-2"></i>
+            </button>
+          </div>
+          <div className="mt-8 flex justify-center gap-8 text-sm">
+            <div className="flex items-center gap-2">
+              <i className="fas fa-check-circle text-green-500"></i>
+              <span className={theme.textSecondary}>No credit card required</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <i className="fas fa-check-circle text-green-500"></i>
+              <span className={theme.textSecondary}>Cancel anytime</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default Hero;
+}
