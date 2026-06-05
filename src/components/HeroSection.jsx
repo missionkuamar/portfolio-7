@@ -1,63 +1,67 @@
-// components/ProductGrid.jsx
-import React, { useContext, useState } from 'react';
-import { ThemeContext } from './ThemeContext';
+// components/HeroSection.jsx
+import React from 'react';
+import { useApp } from '../App';
+import { Sparkles, Play, ArrowRight, Rocket } from 'lucide-react';
 
-const products = [
-  { id: 1, name: 'Wireless Headphones', price: 99, image: '🎧', sales: 245 },
-  { id: 2, name: 'Smart Watch', price: 199, image: '⌚', sales: 178 },
-  { id: 3, name: 'Laptop Backpack', price: 49, image: '🎒', sales: 432 },
-  { id: 4, name: 'USB-C Hub', price: 39, image: '🔌', sales: 567 },
-  { id: 5, name: 'Mechanical Keyboard', price: 129, image: '⌨️', sales: 234 },
-  { id: 6, name: 'Gaming Mouse', price: 59, image: '🖱️', sales: 389 }
-];
+export default function HeroSection() {
+  const { theme, setActivePage } = useApp();
 
-export default function ProductGrid() {
-  const { theme } = useContext(ThemeContext);
-  const [cart, setCart] = useState([]);
-  
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-    alert(`Added ${product.name} to cart!`);
-  };
-  
   return (
-    <div>
-      <h2 className={`text-2xl font-bold mb-6 ${theme.text}`}>
-        <i className="fas fa-fire mr-2 text-orange-500"></i>
-        Featured Products
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map(product => (
-          <div key={product.id} className={`${theme.card} rounded-xl shadow-lg overflow-hidden border ${theme.border} hover:shadow-xl transition-all transform hover:-translate-y-1`}>
-            <div className="text-6xl p-6 text-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
-              {product.image}
-            </div>
-            <div className="p-5">
-              <h3 className={`text-xl font-semibold ${theme.text} mb-2`}>{product.name}</h3>
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-2xl font-bold text-blue-600">${product.price}</span>
-                <span className={`text-sm ${theme.textSecondary}`}>
-                  <i className="fas fa-shopping-bag mr-1"></i> {product.sales} sold
-                </span>
-              </div>
-              <button 
-                onClick={() => addToCart(product)}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
-              >
-                <i className="fas fa-cart-plus mr-2"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        ))}
+    <div className={`relative rounded-3xl overflow-hidden ${theme.gradient} shadow-2xl animate-on-scroll`} id="hero">
+      <div className="absolute inset-0 bg-black/30 z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
-      {cart.length > 0 && (
-        <div className={`fixed bottom-4 right-4 ${theme.card} rounded-lg shadow-2xl p-4 border ${theme.border} z-50`}>
-          <p className={`${theme.text} font-semibold`}>
-            <i className="fas fa-shopping-cart mr-2 text-blue-600"></i>
-            Cart: {cart.length} items
-          </p>
+      
+      <div className="relative z-10 px-6 py-20 sm:py-28 sm:px-12 text-center">
+        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 animate-bounce">
+          <Sparkles size={16} className="text-yellow-400" />
+          <span className={`text-sm ${theme.text}`}>✨ New: AI-Powered Analytics Engine</span>
         </div>
-      )}
+        
+        <h1 className={`text-5xl sm:text-7xl font-bold mb-6 ${theme.text} leading-tight`}>
+          Build Your{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 animate-gradient">
+            E-commerce Empire
+          </span>
+        </h1>
+        
+        <p className={`text-lg sm:text-xl mb-10 ${theme.textSecondary} max-w-2xl mx-auto`}>
+          The ultimate AI-powered SaaS platform for modern businesses. 
+          Manage your shop, track orders, and scale your revenue with enterprise-grade solutions.
+        </p>
+        
+        <div className="flex gap-4 justify-center flex-wrap">
+          <button 
+            onClick={() => setActivePage('trial')}
+            className={`group ${theme.primary} ${theme.primaryHover} text-white px-8 py-4 rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2 text-lg`}
+          >
+            Start Free Trial <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button 
+            onClick={() => window.open('https://www.youtube.com/watch?v=demo', '_blank')}
+            className={`border-2 ${theme.border} ${theme.text} px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center gap-2 text-lg`}
+          >
+            <Play size={20} /> Watch Demo
+          </button>
+        </div>
+        
+        <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className={theme.textSecondary}>No credit card required</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className={theme.textSecondary}>14-day free trial</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className={theme.textSecondary}>Cancel anytime</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

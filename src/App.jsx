@@ -22,6 +22,17 @@ import AdminOrders from './pages/AdminOrders';
 import AdminCustomers from './pages/AdminCustomers';
 import AdminAnalytics from './pages/AdminAnalytics';
 import AdminSettings from './pages/AdminSettings';
+import StartFreeTrial from './pages/StartFreeTrial';
+import BlogPostPage from './pages/BlogPostPage';
+
+import SuperAdminUsers from './pages/SuperAdminUsers';
+import SuperAdminShops from './pages/SuperAdminShops';
+import SuperAdminAnalytics from './pages/SuperAdminAnalytics';
+import SuperAdminReports from './pages/SuperAdminReports';
+import SuperAdminSecurity from './pages/SuperAdminSecurity';
+import SuperAdminSettings from './pages/SuperAdminSettings';
+import SuperAdminTopShops from './pages/SuperAdminTopShops';
+
 export const AppContext = createContext();
 
 export const useApp = () => useContext(AppContext);
@@ -53,6 +64,17 @@ function App() {
 
   // App.jsx - Update the renderPage function
 const renderPage = () => {
+
+  // Check for blog post route
+  if (activePage === 'blog-post') {
+    const selectedPost = JSON.parse(localStorage.getItem('selectedBlogPost') || '{}');
+    return <BlogPostPage post={selectedPost} />;
+  }
+
+    // Check for trial route
+  if (activePage === 'trial') {
+    return <StartFreeTrial />;
+  }
   // Admin routes for shop owners
   if (activeRole === 'admin') {
     if (activePage === 'admin') return <AdminDashboard />;
@@ -64,17 +86,20 @@ const renderPage = () => {
     if (activePage === 'admin-performance') return <AdminPerformance />;
   }
   
-  // Super admin routes
-  if (activeRole === 'superadmin') {
-    if (activePage === 'superadmin') return <SuperAdminDashboard />;
-    if (activePage === 'superadmin-users') return <SuperAdminUsers />;
-    if (activePage === 'superadmin-shops') return <SuperAdminShops />;
-    if (activePage === 'superadmin-analytics') return <SuperAdminAnalytics />;
-    if (activePage === 'superadmin-reports') return <SuperAdminReports />;
-    if (activePage === 'superadmin-security') return <SuperAdminSecurity />;
-    if (activePage === 'superadmin-settings') return <SuperAdminSettings />;
-    if (activePage === 'superadmin-topshops') return <SuperAdminTopShops />;
+  // Then in your super admin routes section, add:
+if (activeRole === 'superadmin') {
+  switch(activePage) {
+    case 'superadmin': return <SuperAdminDashboard />;
+    case 'superadmin-users': return <SuperAdminUsers />;
+    case 'superadmin-shops': return <SuperAdminShops />;
+    case 'superadmin-analytics': return <SuperAdminAnalytics />;
+    case 'superadmin-reports': return <SuperAdminReports />;
+    case 'superadmin-security': return <SuperAdminSecurity />;
+    case 'superadmin-settings': return <SuperAdminSettings />;
+    case 'superadmin-topshops': return <SuperAdminTopShops />;
+    default: return <SuperAdminDashboard />;
   }
+}
   
   // Regular pages
   switch(activePage) {

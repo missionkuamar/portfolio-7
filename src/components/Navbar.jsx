@@ -6,7 +6,7 @@ import {
   ShoppingCart, Star, CreditCard, Settings, HelpCircle, 
   LogOut, BarChart3, Users, FileText, MessageCircle, 
   Calendar, Shield, Menu, X, ChevronDown, Palette,
-  LayoutDashboard, TrendingUp, Award, Gift, Truck
+  LayoutDashboard, TrendingUp, Award, Gift, Truck,Activity
 } from 'lucide-react';
 
 export default function Navbar() {
@@ -47,29 +47,30 @@ export default function Navbar() {
   ];
 
   // Admin Menu Items for Shop Owners
-  const adminMenuItems = [
-    { icon: <LayoutDashboard size={16} />, label: 'Admin Dashboard', page: 'admin', badge: null, description: 'Shop Overview' },
-    { icon: <Package size={16} />, label: 'Manage Products', page: 'admin-products', badge: '12', description: 'Add/Edit Products' },
-    { icon: <ShoppingCart size={16} />, label: 'Manage Orders', page: 'admin-orders', badge: '8', description: 'Track Orders' },
-    { icon: <Users size={16} />, label: 'Customers', page: 'admin-customers', badge: null, description: 'Customer List' },
-    { icon: <TrendingUp size={16} />, label: 'Analytics', page: 'admin-analytics', badge: null, description: 'Sales Reports' },
-    { icon: <Settings size={16} />, label: 'Shop Settings', page: 'admin-settings', badge: null, description: 'Store Config' },
-    { icon: <Award size={16} />, label: 'Shop Performance', page: 'admin-performance', badge: '95%', description: 'Rating 4.8' },
-    { icon: <LogOut size={16} />, label: 'Logout', page: null, badge: null, danger: true, action: handleLogout },
-  ];
+ // In Navbar.jsx, update the adminMenuItems:
+const adminMenuItems = [
+  { icon: <LayoutDashboard size={16} />, label: 'Admin Dashboard', page: 'admin', badge: null, description: 'Shop Overview' },
+  { icon: <Package size={16} />, label: 'Manage Products', page: 'admin-products', badge: '12', description: 'Add/Edit Products' },
+  { icon: <ShoppingCart size={16} />, label: 'Manage Orders', page: 'admin-orders', badge: '8', description: 'Track Orders' },
+  { icon: <Users size={16} />, label: 'Customers', page: 'admin-customers', badge: null, description: 'Customer List' },
+  { icon: <BarChart3 size={16} />, label: 'Analytics', page: 'admin-analytics', badge: null, description: 'Sales Reports' },
+  { icon: <Activity size={16} />, label: 'Performance', page: 'admin-performance', badge: null, description: 'KPIs & Metrics' },
+  { icon: <Settings size={16} />, label: 'Shop Settings', page: 'admin-settings', badge: null, description: 'Store Config' },
+  { icon: <LogOut size={16} />, label: 'Logout', page: null, badge: null, danger: true, action: handleLogout },
+];
 
-  // Super Admin Menu Items
-  const superAdminMenuItems = [
-    { icon: <LayoutDashboard size={16} />, label: 'Platform Dashboard', page: 'superadmin', badge: null, description: 'Global Overview' },
-    { icon: <Users size={16} />, label: 'All Users', page: 'superadmin-users', badge: '1,234', description: 'Manage Users' },
-    { icon: <Store size={16} />, label: 'All Shops', page: 'superadmin-shops', badge: '847', description: 'Shop Management' },
-    { icon: <BarChart3 size={16} />, label: 'Revenue Analytics', page: 'superadmin-analytics', badge: null, description: 'Global Revenue' },
-    { icon: <FileText size={16} />, label: 'Platform Reports', page: 'superadmin-reports', badge: '3', description: 'Monthly Reports' },
-    { icon: <Shield size={16} />, label: 'System Security', page: 'superadmin-security', badge: null, description: 'Security Settings' },
-    { icon: <Settings size={16} />, label: 'Global Settings', page: 'superadmin-settings', badge: null, description: 'Platform Config' },
-    { icon: <Award size={16} />, label: 'Top Shops', page: 'superadmin-topshops', badge: 'Top 10', description: 'Leaderboard' },
-    { icon: <LogOut size={16} />, label: 'Logout', page: null, badge: null, danger: true, action: handleLogout },
-  ];
+  // In Navbar.jsx, update the superAdminMenuItems:
+const superAdminMenuItems = [
+  { icon: <LayoutDashboard size={16} />, label: 'Platform Dashboard', page: 'superadmin', badge: null, description: 'Global Overview' },
+  { icon: <Users size={16} />, label: 'All Users', page: 'superadmin-users', badge: '1,234', description: 'Manage Users' },
+  { icon: <Store size={16} />, label: 'All Shops', page: 'superadmin-shops', badge: '847', description: 'Shop Management' },
+  { icon: <BarChart3 size={16} />, label: 'Revenue Analytics', page: 'superadmin-analytics', badge: null, description: 'Global Revenue' },
+  { icon: <FileText size={16} />, label: 'Platform Reports', page: 'superadmin-reports', badge: '3', description: 'Monthly Reports' },
+  { icon: <Shield size={16} />, label: 'System Security', page: 'superadmin-security', badge: null, description: 'Security Settings' },
+  { icon: <Settings size={16} />, label: 'Global Settings', page: 'superadmin-settings', badge: null, description: 'Platform Config' },
+  { icon: <Award size={16} />, label: 'Top Shops', page: 'superadmin-topshops', badge: 'Top 10', description: 'Leaderboard' },
+  { icon: <LogOut size={16} />, label: 'Logout', page: null, badge: null, danger: true, action: handleLogout },
+];
 
   const getMenuItems = () => {
     if (activeRole === 'superadmin') return superAdminMenuItems;
